@@ -35,4 +35,10 @@ public interface ApiService {
 //
 //    @GET("/dsaApp/users/{idUser}/puntos")
 //    Call<Integer> getPuntos(@Path("idUser") String idUser);
+
+    @POST("/dsaApp/users/issue")
+    Call<Denuncia> PostIssue(@Body Denuncia denuncia);
+
+    @GET("/dsaApp/users/FAQs")
+    Call<List<Pregunta>> getPreguntas();
 }

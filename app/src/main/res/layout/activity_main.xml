@@ -19,4 +19,19 @@
         android:text="Register"
         android:layout_marginTop="16dp" />
 
+    <Button
+        android:id="@+id/button_report"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hacer denuncia"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/button_preguntas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Preguntas frecuentes"
+        android:layout_marginTop="16dp" />
+
+
 </LinearLayout>

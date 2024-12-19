@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
         Button buttonLogin = findViewById(R.id.button_login);
         Button buttonRegister = findViewById(R.id.button_register);
+        Button buttonReport = findViewById(R.id.button_report);
+        Button buttonPreguntas = findViewById(R.id.button_preguntas);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8080/dsaApp/")
@@ -45,6 +47,15 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
             startActivity(intent);
         });
+        buttonReport.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ReportActivity.class);
+            startActivity(intent);
+        });
+        buttonPreguntas.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, PreguntasActivity.class);
+            startActivity(intent);
+        });
+
     }
 
     private void checkLoginStatus() {

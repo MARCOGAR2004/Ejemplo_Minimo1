@@ -1,6 +1,7 @@
 package edu.upc.dsa;
 import edu.upc.dsa.models.Products;
 import edu.upc.dsa.models.User;
+import edu.upc.dsa.models.Pregunta;
 
 import java.util.List;
 
@@ -16,6 +17,9 @@ public interface UserManager {
     public List<Products> getProductsOfUser(User u);
     public void addProductToUser(User u, Products p);
     public User getUser(String username);
+    public void addPregunta(String pregunta, String respuesta);
+    public List<Pregunta> getPreguntas();
+
 
 
 

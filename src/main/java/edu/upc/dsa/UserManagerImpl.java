@@ -7,6 +7,7 @@ import edu.upc.dsa.DB.UserDAOImpl;
 import edu.upc.dsa.models.Products;
 import edu.upc.dsa.models.Relacion;
 import edu.upc.dsa.models.User;
+import edu.upc.dsa.models.Pregunta;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -15,10 +16,13 @@ import org.apache.log4j.Logger;
 public class UserManagerImpl implements UserManager{
     private static UserManager instance;
     protected List<User> users;
+    protected List<Pregunta> preguntas;
     final static Logger logger = Logger.getLogger(UserManagerImpl.class);
 
     private UserManagerImpl() {
+
         this.users = new LinkedList<>();
+        this.preguntas = new LinkedList<>();
     }
 
     public static UserManager getInstance() {
@@ -168,6 +172,15 @@ public class UserManagerImpl implements UserManager{
             session.close();
         }
         return null;
+    }
+    @Override
+    public void addPregunta(String pregunta, String respuesta) {
+        Pregunta p = new Pregunta(pregunta, respuesta);
+        this.preguntas.add(p);
+    }
+    @Override
+    public List<Pregunta> getPreguntas() {
+        return this.preguntas;
     }
 
 

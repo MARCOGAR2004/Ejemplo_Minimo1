@@ -7,8 +7,10 @@ import edu.upc.dsa.ProductsManagerImp;
 import edu.upc.dsa.ProductsManager;
 import edu.upc.dsa.UserManager;
 import edu.upc.dsa.UserManagerImpl;
+import edu.upc.dsa.models.Pregunta;
 import edu.upc.dsa.models.Products;
 import edu.upc.dsa.models.User;
+import edu.upc.dsa.models.Denuncia;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -38,6 +40,8 @@ public class UserService {
 //            this.um.Register("Bob", "1", "bob@gmail.com");
 //            this.um.Register("Manolo", "miau", "manolo@gmail.com");
 //        }
+        this.um.addPregunta("¿Cuál es el mejor producto?", "El mejor producto es el producto 1");
+        this.um.addPregunta("¿Cuál es el producto más barato?", "El producto más barato es el producto 2");
 
     }
 
@@ -168,5 +172,39 @@ public class UserService {
             return Response.status(201).entity(u).build();
         }
     }
+
+    @POST
+    @ApiOperation(value = "submit denuncia", notes = "Submit a denuncia and print it")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = Denuncia.class),
+            @ApiResponse(code = 400, message = "Invalid denuncia data")
+    })
+    @Path("/issue")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response submitDenuncia(Denuncia denuncia) {
+
+
+            System.out.println("Denuncia received:");
+            System.out.println("Date: " + denuncia.getDate());
+            System.out.println("Nombre: " + denuncia.getNombre());
+            System.out.println("Message: " + denuncia.getMessage());
+            return Response.status(201).entity(denuncia).build();
+    }
+
+    @GET
+    @ApiOperation(value = "get all preguntas", notes = "asdasd")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = Pregunta.class, responseContainer = "List"),
+    })
+    @Path("/FAQs")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getPreguntas() {
+        List<Pregunta> preguntas = this.um.getPreguntas();
+        GenericEntity<List<Pregunta>> entity = new GenericEntity<List<Pregunta>>(preguntas) {
+        };
+        return Response.status(201).entity(entity).build();
+    }
+
 
 }
